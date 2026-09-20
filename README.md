@@ -2,34 +2,40 @@
 
 > 云计算 / 运维方向 · 2026
 
-本仓库记录在校期间完成的运维、虚拟化与部署实践项目，含操作截图与关键步骤说明。
+本仓库记录在校期间完成的运维、虚拟化与部署实践项目，含操作截图、配置文件与关键命令说明。
 
 ## 项目清单
 
-### 1. Docker Swarm 集群搭建与服务编排
-- **技术栈**：Docker / Docker Swarm
-- **内容**：初始化 Swarm 集群（manager + worker），部署多副本服务并验证调度与故障恢复。
-- **截图**：
-  - 集群初始化：[docker-swarm-cluster-init.png](docker-swarm-cluster-init.png)
-  - 服务多副本运行：[docker-swarm-service-replica.png](docker-swarm-service-replica.png)
+### 1. Docker Swarm 三节点集群部署
+- **技术栈**：Docker / Docker Swarm / overlay 网络
+- **内容**：初始化 Swarm 集群（manager + worker），以服务方式部署 3 副本 Nginx，验证负载分发。
+- **文件**：
+  - 编排文件：[docker-stack.yml](docker-stack.yml)
+  - 集群初始化截图：[docker-swarm-cluster-init.png](docker-swarm-cluster-init.png)
+  - 多副本运行截图：[docker-swarm-service-replica.png](docker-swarm-service-replica.png)
 
-### 2. 阿里云 ECS 云服务器部署
-- **技术栈**：阿里云 ECS / 安全组
-- **内容**：购买并初始化 ECS 实例，配置安全组策略，完成网络与访问控制。
-- **截图**：
-  - ECS 实例：[aliyun-ecs-instance.jpg](aliyun-ecs-instance.jpg)
-  - 安全组规则：[aliyun-security-group.jpg](aliyun-security-group.jpg)
+### 2. Docker Compose Web 服务容器化
+- **技术栈**：Docker / Docker Compose / Nginx / MySQL
+- **内容**：编写 Dockerfile 构建 Nginx 镜像，Compose 编排 Web + MySQL，数据卷持久化。
+- **文件**：
+  - [Dockerfile](Dockerfile) · [docker-compose.yml](docker-compose.yml) · [default.conf](default.conf) · [index.html](index.html)
 
-### 3. KVM / QEMU 虚拟化
-- **技术栈**：KVM / QEMU / Linux
-- **内容**：在 Linux 宿主机上创建并管理 KVM 虚拟机，完成网络与磁盘配置。
-- **截图**：[kvm-qemu-virtualization.png](kvm-qemu-virtualization.png)
+### 3. 阿里云 ECS + 宝塔 LNMP 部署
+- **技术栈**：阿里云 ECS / 宝塔面板 / Nginx / PHP / MySQL
+- **内容**：从购买 ECS 到部署 WordPress 站点的完整链路，安全组最小化配置。
+- **文件**：
+  - 部署笔记：[aliyun-lnmp-notes.md](aliyun-lnmp-notes.md)
+  - ECS 实例截图：[aliyun-ecs-instance.jpg](aliyun-ecs-instance.jpg)
+  - 安全组截图：[aliyun-security-group.jpg](aliyun-security-group.jpg)
+  - 宝塔 LNMP 截图：[baota-lnmp-deploy.jpg](baota-lnmp-deploy.jpg)
 
-### 4. 宝塔面板 LNMP 环境部署
-- **技术栈**：宝塔 / Linux + Nginx + MySQL + PHP
-- **内容**：通过宝塔面板一键部署 LNMP 环境，验证站点运行。
-- **截图**：[baota-lnmp-deploy.jpg](baota-lnmp-deploy.jpg)
+### 4. KVM/QEMU 虚拟化
+- **技术栈**：KVM / QEMU / libvirt / virsh / virt-manager
+- **内容**：qemu-img 创建 qcow2 磁盘，virsh 导出 XML 修改 UUID/MAC 完成克隆。
+- **文件**：
+  - 操作笔记：[kvm-notes.md](kvm-notes.md)
+  - 虚拟化截图：[kvm-qemu-virtualization.png](kvm-qemu-virtualization.png)
 
 ## 技能关键词
 
-Linux · VMware 虚拟化 · Docker / Docker Swarm · KVM/QEMU · 阿里云 ECS · 安全组 · Nginx · 宝塔 LNMP
+Linux · VMware 虚拟化 · Docker / Docker Swarm / Compose · KVM/QEMU · 阿里云 ECS · 安全组 · Nginx · MySQL · Shell · 宝塔 LNMP

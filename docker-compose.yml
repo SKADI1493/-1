@@ -1,0 +1,26 @@
+﻿# docker-compose.yml - Web + MySQL 一键编排
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - web_html:/usr/share/nginx/html
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: demo
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app123
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  web_html:
+  db_data:
